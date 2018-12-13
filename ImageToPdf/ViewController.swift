@@ -42,7 +42,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     @IBAction func converImageToPdf(_ sender: Any) {
-        
+        print("✅ conver to pdf action")
+        _ = createPDFDataFromImage(image: imageView.image!)
     }
     
     
@@ -75,12 +76,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         //try saving in doc dir to confirm:
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
-        let path = dir?.appendingPathComponent("file.pdf")
+        let path = dir?.appendingPathComponent("imageTaken.pdf")
+        
+        print("👉 pdf path: \(String(describing: path))")
+        
         
         do {
             try pdfData.write(to: path!, options: NSData.WritingOptions.atomic)
         } catch {
-            print("error catched")
+            print("❌ error saving image to disk!")
         }
         
         return pdfData
