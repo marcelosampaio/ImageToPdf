@@ -93,6 +93,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     // MARK: - Image Picker Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        
+        
+        
+        for (key, value) in info {
+            print("👉\(key.rawValue)  👉\(value)")
+        }
+        
+        
+        
+        
         imagePicker.dismiss(animated: true, completion: nil)
         guard let selectedImage = info[.originalImage] as? UIImage else {
             print("❌ Image not found!")
